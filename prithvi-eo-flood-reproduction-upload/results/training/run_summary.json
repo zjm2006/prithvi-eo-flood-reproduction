@@ -1,0 +1,45 @@
+{
+  "seconds": 4805.471727371216,
+  "pretrained_loads": [
+    {
+      "keys": 294,
+      "missing": [],
+      "unexpected": [],
+      "mismatched": []
+    }
+  ],
+  "global_step": 800,
+  "peak_allocated_gib": 12.210694313049316,
+  "peak_reserved_gib": 13.328125,
+  "callback_metrics": {
+    "lr-AdamW": 4.933178843202768e-08,
+    "train/loss": 0.035517677664756775,
+    "val/loss": 0.0669093206524849,
+    "val/Multiclass_Accuracy": 0.9764156937599182,
+    "val/multiclassaccuracy_0": 0.986301600933075,
+    "val/multiclassaccuracy_1": 0.8966707587242126,
+    "val/Multiclass_F1_Score": 0.9764156937599182,
+    "val/Multiclass_Jaccard_Index": 0.8906379342079163,
+    "val/multiclassjaccardindex_0": 0.9738272428512573,
+    "val/multiclassjaccardindex_1": 0.8074486255645752,
+    "val/Multiclass_Jaccard_Index_Micro": 0.9539182186126709,
+    "train/Multiclass_Accuracy": 0.9816099405288696,
+    "train/multiclassaccuracy_0": 0.9916411638259888,
+    "train/multiclassaccuracy_1": 0.8851079344749451,
+    "train/Multiclass_F1_Score": 0.9816098213195801,
+    "train/Multiclass_Jaccard_Index": 0.8995838165283203,
+    "train/multiclassjaccardindex_0": 0.9799377918243408,
+    "train/multiclassjaccardindex_1": 0.8192299008369446,
+    "train/Multiclass_Jaccard_Index_Micro": 0.9638838768005371
+  },
+  "checkpoints": [
+    {
+      "best": "/home/zjm/projects/prithvi-eo/runs/300m_paper448_remote/version_0/checkpoints/epochepoch=47-stepstep=768.ckpt",
+      "last": "/home/zjm/projects/prithvi-eo/runs/300m_paper448_remote/version_0/checkpoints/last.ckpt"
+    },
+    {
+      "best": "",
+      "last": ""
+    }
+  ]
+}
