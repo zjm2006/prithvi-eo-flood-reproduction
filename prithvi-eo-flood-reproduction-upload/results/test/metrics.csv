@@ -1,2 +1,0 @@
-epoch,step,test/Multiclass_Accuracy,test/Multiclass_F1_Score,test/Multiclass_Jaccard_Index,test/Multiclass_Jaccard_Index_Micro,test/loss,test/multiclassaccuracy_0,test/multiclassaccuracy_1,test/multiclassjaccardindex_0,test/multiclassjaccardindex_1
-0,0,0.9734761118888855,0.9734761118888855,0.8878967761993408,0.9483229517936707,0.0826597660779953,0.9869915843009949,0.8789137005805969,0.9702008962631226,0.8055925965309143
