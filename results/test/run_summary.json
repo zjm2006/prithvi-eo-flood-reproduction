@@ -1,0 +1,35 @@
+{
+  "seconds": 42.24704909324646,
+  "pretrained_loads": [
+    {
+      "keys": 294,
+      "missing": [],
+      "unexpected": [],
+      "mismatched": []
+    }
+  ],
+  "global_step": 0,
+  "peak_allocated_gib": 2.9511642456054688,
+  "peak_reserved_gib": 3.58203125,
+  "callback_metrics": {
+    "test/loss": 0.0826597660779953,
+    "test/Multiclass_Accuracy": 0.9734761118888855,
+    "test/multiclassaccuracy_0": 0.9869915843009949,
+    "test/multiclassaccuracy_1": 0.8789137005805969,
+    "test/Multiclass_F1_Score": 0.9734761118888855,
+    "test/Multiclass_Jaccard_Index": 0.8878967761993408,
+    "test/multiclassjaccardindex_0": 0.9702008962631226,
+    "test/multiclassjaccardindex_1": 0.8055925965309143,
+    "test/Multiclass_Jaccard_Index_Micro": 0.9483229517936707
+  },
+  "checkpoints": [
+    {
+      "best": "",
+      "last": ""
+    },
+    {
+      "best": "",
+      "last": ""
+    }
+  ]
+}

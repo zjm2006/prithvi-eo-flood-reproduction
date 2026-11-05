@@ -1,0 +1,123 @@
+# Run commands from the repository root.
+seed_everything: 0
+trainer:
+  accelerator: gpu
+  strategy: auto
+  devices: 1
+  num_nodes: 1
+  precision: 16-mixed
+  accumulate_grad_batches: 2
+  logger:
+    class_path: lightning.pytorch.loggers.CSVLogger
+    init_args:
+      save_dir: runs
+      name: 300m_paper448_seed0
+  callbacks:
+  - class_path: LearningRateMonitor
+    init_args:
+      logging_interval: epoch
+  - class_path: lightning.pytorch.callbacks.EarlyStopping
+    init_args:
+      patience: 20
+      monitor: val/loss
+      mode: min
+  max_epochs: 50
+  check_val_every_n_epoch: 1
+  log_every_n_steps: 10
+  enable_checkpointing: true
+  default_root_dir: runs/300m_paper448_seed0
+  enable_progress_bar: false
+data:
+  class_path: terratorch.datamodules.Sen1Floods11NonGeoDataModule
+  init_args:
+    data_root: data/sen1floods11
+    batch_size: 8
+    num_workers: 2
+    constant_scale: 0.0001
+    no_data_replace: 0
+    no_label_replace: -1
+    use_metadata: false
+    bands:
+    - BLUE
+    - GREEN
+    - RED
+    - NIR_NARROW
+    - SWIR_1
+    - SWIR_2
+    train_transform:
+    - class_path: albumentations.Resize
+      init_args:
+        height: 448
+        width: 448
+    - class_path: albumentations.HorizontalFlip
+      init_args:
+        p: 0.5
+    - class_path: albumentations.VerticalFlip
+      init_args:
+        p: 0.5
+    - class_path: ToTensorV2
+    val_transform:
+    - class_path: albumentations.Resize
+      init_args:
+        height: 448
+        width: 448
+    - class_path: ToTensorV2
+    test_transform:
+    - class_path: albumentations.Resize
+      init_args:
+        height: 448
+        width: 448
+    - class_path: ToTensorV2
+model:
+  class_path: terratorch.tasks.SemanticSegmentationTask
+  init_args:
+    model_args:
+      backbone_pretrained: true
+      backbone: prithvi_eo_v2_300
+      decoder: UperNetDecoder
+      decoder_channels: 256
+      decoder_scale_modules: true
+      num_classes: 2
+      rescale: true
+      backbone_bands:
+      - BLUE
+      - GREEN
+      - RED
+      - NIR_NARROW
+      - SWIR_1
+      - SWIR_2
+      head_dropout: 0.1
+      necks:
+      - name: SelectIndices
+        indices:
+        - 5
+        - 11
+        - 17
+        - 23
+      - name: ReshapeTokensToImage
+      backbone_pretrained_cfg_overlay:
+        file: weights/Prithvi_EO_V2_300M.pt
+      backbone_num_frames: 1
+      backbone_coords_scale_learn: false
+    loss: ce
+    ignore_index: -1
+    freeze_backbone: false
+    freeze_decoder: false
+    model_factory: EncoderDecoderFactory
+optimizer:
+  class_path: torch.optim.AdamW
+  init_args:
+    lr: 5.0e-05
+    weight_decay: 0.05
+lr_scheduler:
+  class_path: CosineAnnealingLR
+  init_args:
+    T_max: 50
+ModelCheckpoint:
+  monitor: val/loss
+  mode: min
+  save_top_k: 1
+  save_last: true
+  filename: epoch{epoch:02d}-step{step}
+StateDictModelCheckpoint:
+  save_top_k: 0
