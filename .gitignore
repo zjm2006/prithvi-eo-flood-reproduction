@@ -1,0 +1,32 @@
+# Data and model artifacts
+data/
+weights/
+runs/
+archives/
+visualizations/
+*.ckpt
+*.pt
+*.pth
+*.tif
+*.tiff
+*.tar
+*.tar.gz
+*.zip
+
+# Python environments and caches
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+venv/
+miniconda3/
+
+# Credentials and local settings
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.ssh/
+.DS_Store
+Thumbs.db
